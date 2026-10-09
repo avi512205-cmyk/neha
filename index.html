@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday! ✨</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Great+Vibes&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <!-- Canvas Confetti Library -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <!-- FontAwesome icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- Floating Background Elements -->
+    <div class="stars-container" id="starsContainer"></div>
+    <div class="floating-hearts" id="heartsContainer"></div>
+
+    <!-- Music Control Floating Button -->
+    <div class="audio-control" id="audioControl" title="Toggle Music">
+        <i class="fas fa-music" id="musicIcon"></i>
+    </div>
+
+    <!-- Main Container -->
+    <main class="main-wrapper">
+
+        <!-- Header / Intro Banner -->
+        <header class="hero-section">
+            <div class="sparkle-badge"><i class="fas fa-sparkles"></i> A Special Birthday Wish</div>
+            <h1 class="glow-title" id="friendNameHeader">Happy Birthday, <span class="highlight-name">Bestie</span>! ✨</h1>
+            <p class="subtitle" id="subtitleText">Wishing you a day as brilliant, beautiful, and full of joy as you are.</p>
+        </header>
+
+        <!-- Stage 1: The Interactive Gift Box -->
+        <section class="card-section gift-section" id="giftSection">
+            <div class="section-tag"><i class="fas fa-gift"></i> Step 1</div>
+            <h2>You Have a Special Delivery! 🎁</h2>
+            <p>Tap the gift box to unwrap your birthday surprise</p>
+            
+            <div class="gift-box-container">
+                <div class="gift-box" id="giftBox">
+                    <div class="gift-lid">
+                        <div class="ribbon-bow">
+                            <div class="bow-left"></div>
+                            <div class="bow-right"></div>
+                        </div>
+                    </div>
+                    <div class="gift-body">
+                        <div class="ribbon-vertical"></div>
+                        <div class="ribbon-horizontal"></div>
+                    </div>
+                    <div class="gift-shadow"></div>
+                </div>
+            </div>
+            <p class="click-hint"><i class="fas fa-hand-pointer"></i> Click the box to open</p>
+        </section>
+
+        <!-- Stage 2: The Interactive Cake & Candle Blowing (Unlocked after gift) -->
+        <section class="card-section cake-section locked" id="cakeSection">
+            <div class="section-tag"><i class="fas fa-birthday-cake"></i> Step 2</div>
+            <h2>Make a Wish & Blow Out the Candles! 🎂</h2>
+            <p id="cakeInstructions">Click the candle flames or tap the button below to blow them out</p>
+
+            <!-- 3D Interactive Rose Gold Birthday Cake -->
+            <div class="cake-container">
+                <div class="cake">
+                    <div class="plate"></div>
+                    <div class="layer layer-bottom"></div>
+                    <div class="layer layer-middle"></div>
+                    <div class="layer layer-top"></div>
+                    <div class="icing"></div>
+                    
+                    <!-- Candles -->
+                    <div class="candles-wrapper" id="candlesWrapper">
+                        <div class="candle" data-id="1">
+                            <div class="flame" id="flame1"></div>
+                        </div>
+                        <div class="candle" data-id="2">
+                            <div class="flame" id="flame2"></div>
+                        </div>
+                        <div class="candle" data-id="3">
+                            <div class="flame" id="flame3"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cake-controls">
+                <button class="btn btn-primary" id="blowBtn">
+                    <i class="fas fa-wind"></i> Blow Out Candles
+                </button>
+            </div>
+        </section>
+
+        <!-- Stage 3: Revealed Envelope & Wish Card -->
+        <section class="card-section wish-section locked" id="wishSection">
+            <div class="section-tag"><i class="fas fa-heart"></i> Step 3</div>
+            <h2>A Message From The Heart 💌</h2>
+
+            <!-- Envelope & Letter Container -->
+            <div class="envelope-wrapper" id="envelopeWrapper">
+                <div class="envelope" id="envelope">
+                    <div class="envelope-back"></div>
+                    <div class="letter" id="letter">
+                        <div class="letter-content">
+                            <div class="letter-header">
+                                <span class="decor-line"></span>
+                                <h3 id="letterSalutation">Dear Neha,</h3>
+                                <span class="decor-line"></span>                                                                                                                                                        
+                            </div>
+                            <p class="letter-body" id="letterBody">
+                                On this wonderful day, I want to remind you of how extraordinarily special you are to everyone around you. Your laughter brightens the darkest days, your warmth brings comfort, and your presence is a true blessing.
+                            </p>
+                            <p class="letter-body" id="letterBody2">
+                                May this new chapter of your life be filled with endless smiles, exciting adventures, boundless success, and all the love your heart can hold. Never stop shining your unique light!
+                            </p>
+                            <div class="letter-footer">
+                                <p class="closing">With all my love & warmest wishes,</p>
+                                <p class="signature" id="senderSignature">~ Your Bestu Avi ❤️</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="envelope-front"></div>
+                    <div class="envelope-top"></div>
+                    <div class="seal" id="envelopeSeal">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                </div>
+            </div>
+
+            <p class="envelope-hint" id="envelopeHint"><i class="fas fa-envelope-open-text"></i> Click the wax seal to open the letter</p>
+        </section>
+
+
+        <!-- Final Wishes & Celebration Footer -->
+        <footer class="footer-section">
+            <button class="btn btn-secondary" id="replayBtn">
+                <i class="fas fa-redo"></i> Replay Celebration 🎉
+            </button>
+            <p class="copyright">Crafted with ❤️ for a wonderful bestie</p>
+        </footer>
+
+    </main>
+
+    <!-- JavaScript Files -->
+    <script src="script.js"></script>
+</body>
+</html>
